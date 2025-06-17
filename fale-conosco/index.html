@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fale Conosco</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(to right, #f3f4f6, #e0f7fa);
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .navbar-custom {
+      background-color: #d0ece7;
+    }
+    .nav-link.active {
+      font-weight: bold;
+      color: #00796b !important;
+    }
+    .post-container {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      margin-bottom: 2rem;
+    }
+    .preview-img {
+      max-width: 100%;
+      max-height: 200px;
+      margin-top: 0.5rem;
+      border-radius: 0.5rem;
+      object-fit: cover;
+    }
+    .tag {
+      background-color: #a2d5c6;
+      color: #004d40;
+      padding: 0.2rem 0.6rem;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      margin-right: 0.3rem;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-custom mb-4">
+    <div class="container">
+      <a class="navbar-brand" href="#">Conectar para Cuidar</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="../home/index.html">Início</a></li>
+          <li class="nav-item"><a class="nav-link" href="../sobre/index.html">Sobre</a></li>
+          <li class="nav-item"><a class="nav-link active" href="#">Fale Conosco</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="post-container">
+      <h1 class="mb-3">Fale Conosco</h1>
+      <p>Estamos aqui para ouvir você. Se você tem dúvidas, sugestões, críticas construtivas ou apenas quer compartilhar sua opinião sobre o aplicativo, esse é o espaço certo. Acreditamos que um canal aberto e humano com nossas usuárias é essencial para construirmos uma comunidade cada vez mais forte e alinhada com suas necessidades.</p>
+
+      <p>Seja para relatar algum problema técnico, enviar uma ideia de melhoria ou apenas bater um papo, nossa equipe está pronta para te receber com empatia e atenção.</p>
+    </div>
+
+    <div class="post-container">
+      <h2>Como podemos te ajudar?</h2>
+      <p><strong>📧 Suporte Técnico:</strong><br>
+      Está enfrentando alguma dificuldade no uso do app? Nosso time de suporte está à disposição para resolver qualquer instabilidade ou problema que você esteja passando. Basta nos enviar uma mensagem detalhada com seu nome, e-mail e, se possível, uma captura de tela.</p>
+
+      <p><strong>💡 Sugestões e Ideias:</strong><br>
+      Você teve uma ideia de funcionalidade nova? Achou algo que poderia melhorar? Conta pra gente! Valorizamos cada sugestão e analisamos com carinho tudo que recebemos.</p>
+
+      <p><strong>🤝 Parcerias e Imprensa:</strong><br>
+      Quer fazer parte do nosso ecossistema como parceira, colaboradora ou veículo de comunicação? Entra em contato pelo formulário ou nos escreva diretamente no e-mail abaixo.</p>
+    </div>
+
+    <div class="post-container">
+      <h2>Contatos Diretos</h2>
+      <ul>
+        <li><strong>E-mail de Suporte:</strong> apoio@conectarparacuidar.com</li>
+        <li><strong>E-mail Geral:</strong> contato@conectarparacuidar.com</li>
+        <li><strong>Instagram:</strong> <a href="https://instagram.com/conectarparacuidar" target="_blank">@conectarparacuidar</a></li>
+        <li><strong>WhatsApp:</strong> <a href="https://wa.me/5551981368934" target="_blank">(51) 981368934</a> (Atendimento das 9h às 18h)</li>
+      </ul>
+    </div>
+
+    <div class="post-container" style="max-width: 700px; margin: auto;">
+      <h2 class="mb-3">Envie sua mensagem</h2>
+      <form id="formContato">
+        <div class="mb-3">
+          <label for="nome" class="form-label">Seu nome</label>
+          <input type="text" class="form-control" id="nome" required>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Seu e-mail</label>
+          <input type="email" class="form-control" id="email" required>
+        </div>
+        <div class="mb-3">
+          <label for="assunto" class="form-label">Assunto</label>
+          <select class="form-select" id="assunto" required>
+            <option value="">Selecione...</option>
+            <option>Dúvida</option>
+            <option>Sugestão</option>
+            <option>Problema Técnico</option>
+            <option>Parcerias</option>
+            <option>Outro</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="mensagem" class="form-label">Mensagem</label>
+          <textarea class="form-control" id="mensagem" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-success">Enviar</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="confirmacaoModal" tabindex="-1" aria-labelledby="confirmacaoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-success text-white">
+          <h5 class="modal-title" id="confirmacaoModalLabel">Mensagem enviada!</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          Obrigada por sua mensagem. Entraremos em contato em breve.<br>
+          Se preferir, também estamos disponíveis via <strong><a href="https://wa.me/5511900000000" target="_blank">WhatsApp</a></strong>.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.getElementById('formContato').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const modal = new bootstrap.Modal(document.getElementById('confirmacaoModal'));
+      modal.show();
+      this.reset();
+    });
+  </script>
+</body>
+</html>

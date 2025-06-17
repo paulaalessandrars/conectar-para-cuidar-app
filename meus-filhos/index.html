@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <title>Conectar para Cuidar</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Seu CSS -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-custom shadow-sm">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Conectar para Cuidar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="../home/index.html">Início</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../meus-filhos/index.html">Meus Filhos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../sobre/index.html">Sobre</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../fale-conosco/">Fale Conosco</a>
+          </li>
+        </ul>
+        <span class="navbar-text me-3" id="nomeUsuario"></span>
+        <button id="btnLogout" class="btn btn-danger">Sair</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container py-4">
+
+    <h2 class="mb-4">Meus Filhos</h2>
+
+    <!-- Botão Criar Perfil -->
+    <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#perfilModal" onclick="abrirModalCriar()">+ Novo Filho</button>
+
+    <!-- Lista de Perfis -->
+    <div id="listaPerfis" class="row g-3 mb-4"></div>
+
+    <!-- Perfil Detalhado -->
+    <section id="perfilDetalhado" style="display:none;">
+      <input type="hidden" id="perfilId" />
+
+      <h3 id="nomeFilhoDetalhado"></h3>
+      <div class="mb-3">
+        <p><strong>Data de Nascimento:</strong> <span id="nascimentoFilho"></span></p>
+        <p><strong>Peso (kg):</strong> <span id="pesoFilho"></span></p>
+        <p><strong>Altura (cm):</strong> <span id="alturaFilho"></span></p>
+        <p><strong>Alergias:</strong> <span id="alergiasFilho"></span></p>
+        <p><strong>Vacinas:</strong> <span id="vacinasFilho"></span></p>
+        <p><strong>Anotações:</strong> <span id="anotacoesFilho"></span></p>
+      </div>
+      <div id="fotosFilho" class="mb-3 d-flex gap-2 flex-wrap"></div>
+
+      <button class="btn btn-primary me-2" onclick="abrirModalEditar()">Editar perfil do filho</button>
+      <button class="btn btn-secondary me-2" onclick="abrirModalAtividade()">Adicionar nova atividade</button>
+      <button type="button" class="btn btn-danger" onclick="abrirModalExcluir()">Excluir Perfil</button>
+
+
+      <!-- Gráficos -->
+      <div class="my-4">
+        <h5>Histórico de Peso e Altura</h5>
+        <canvas id="graficoCrescimento" width="400" height="200"></canvas>
+      </div>
+
+      <!-- Calendário e Atividades -->
+      <section>
+        <h5>Atividades</h5>
+        <input type="date" id="filtroDataAtividade" class="form-control mb-2" onchange="filtrarAtividades()" />
+        <div id="calendarioAtividades" class="mb-3"></div>
+        <ul id="listaAtividades" class="list-group"></ul>
+      </section>
+
+    </section>
+
+  </main>
+
+  <!-- Modal Criar/Editar Perfil -->
+  <div class="modal fade" id="perfilModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <form id="formPerfil" class="modal-content" novalidate>
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalTituloPerfil">Novo Filho</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="perfilIdInput" />
+          <div class="mb-3">
+            <label for="nomeFilho" class="form-label">Nome</label>
+            <input type="text" id="nomeFilho" class="form-control" required />
+          </div>
+          <div class="mb-3">
+            <label for="nascimentoFilhoInput" class="form-label">Nascimento</label>
+            <input type="date" id="nascimentoFilhoInput" class="form-control" required />
+          </div>
+          <div class="mb-3">
+            <label for="pesoFilhoInput" class="form-label">Peso (kg)</label>
+            <input type="number" id="pesoFilhoInput" class="form-control" min="0" step="0.1" required />
+          </div>
+          <div class="mb-3">
+            <label for="alturaFilhoInput" class="form-label">Altura (cm)</label>
+            <input type="number" id="alturaFilhoInput" class="form-control" min="0" step="0.1" required />
+          </div>
+          <div class="mb-3">
+            <label for="alergiasFilhoInput" class="form-label">Alergias</label>
+            <textarea id="alergiasFilhoInput" class="form-control" rows="2"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="vacinasFilhoInput" class="form-label">Vacinas</label>
+            <textarea id="vacinasFilhoInput" class="form-control" rows="2"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="anotacoesFilhoInput" class="form-label">Anotações</label>
+            <textarea id="anotacoesFilhoInput" class="form-control" rows="3"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="fotosFilhoInput" class="form-label">Fotos do Filho</label>
+            <input type="file" id="fotosFilhoInput" class="form-control" multiple accept="image/*" />
+            <div id="previewFotos" class="d-flex gap-2 flex-wrap mt-2"></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success">Salvar</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Adicionar Atividade -->
+  <div class="modal fade" id="atividadeModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <form id="formAtividade" class="modal-content" novalidate>
+        <div class="modal-header">
+          <h5 class="modal-title">Adicionar Nova Atividade</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="atividadePerfilId" />
+          <div class="mb-3">
+            <label for="dataAtividade" class="form-label">Data</label>
+            <input type="date" id="dataAtividade" class="form-control" required />
+          </div>
+          <div class="mb-3">
+            <label for="tipoAtividade" class="form-label">Tipo de Atividade</label>
+            <select id="tipoAtividade" class="form-select" required>
+              <option value="">Selecione</option>
+              <option value="Consulta Médica">Consulta Médica</option>
+              <option value="Vacina">Vacina</option>
+              <option value="Evento Escolar">Evento Escolar</option>
+              <option value="Medicação">Medicação</option>
+              <option value="Observação">Observação</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="descricaoAtividade" class="form-label">Descrição</label>
+            <textarea id="descricaoAtividade" class="form-control" rows="3" required></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Adicionar</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Confirmar Exclusão -->
+ <div class="modal fade" id="confirmExcluirModal" tabindex="-1" aria-labelledby="confirmExcluirLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmExcluirLabel">Confirmação</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+      </div>
+      <div class="modal-body">
+        Tem certeza que deseja excluir este perfil? Esta ação não pode ser desfeita.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" id="btnConfirmarExcluir">Excluir</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Bootstrap JS Bundle (inclui Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/luxon@3/build/global/luxon.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon"></script>t>
+
+  <!-- Seu JS -->
+  <script src="script.js"></script>
+
+</body>
+</html>

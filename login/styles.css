@@ -1,0 +1,22 @@
+body {
+  background: linear-gradient(to right, #f3f4f6, #e0f7fa);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.login-container {
+  max-width: 400px;
+  margin: 5% auto;
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+.btn-primary {
+  background-color: #a2d5c6;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #92cbb8;
+}

@@ -1,0 +1,32 @@
+body {
+  background: linear-gradient(to right, #f3f4f6, #e0f7fa);
+  font-family: 'Segoe UI', sans-serif;
+}
+.navbar-custom {
+  background-color: #d0ece7;
+}
+.profile-photo {
+  max-width: 100px;
+  max-height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.calendar-day {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ccc;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2px;
+  border-radius: 5px;
+}
+.calendar-day.has-activity {
+  background-color: #a2d5c6;
+  color: #004d40;
+  font-weight: bold;
+  cursor: pointer;
+}

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Home - Conectar para Cuidar</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="styles.css" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-custom shadow-sm">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Conectar para Cuidar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Início</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../meus-filhos/index.html">Meus Filhos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../sobre/index.html">Sobre</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../fale-conosco/index.html">Fale Conosco</a>
+          </li>
+        </ul>
+        <span class="navbar-text me-3" id="nomeUsuario"></span>
+        <button id="btnLogout" class="btn btn-danger">Sair</button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container my-4">
+    <h2 class="mb-3">Compartilhe</h2>
+
+    <!-- Form para nova postagem -->
+    <form id="postForm" class="mb-4 bg-white p-3 rounded shadow-sm">
+      <div class="mb-3">
+        <label for="postText" class="form-label">Texto da postagem</label>
+        <textarea class="form-control" id="postText" rows="3" placeholder="Como foi seu dia?"></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="postImages" class="form-label">Fotos</label>
+        <input type="file" class="form-control" id="postImages" accept="image/*" multiple />
+        <div id="previewContainer" class="d-flex flex-wrap gap-2 mt-2"></div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Tags</label>
+        <div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="tagSono" value="Sono" />
+            <label class="form-check-label" for="tagSono">Sono</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="tagBanho" value="Banho" />
+            <label class="form-check-label" for="tagBanho">Banho</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="tagSaude" value="Saude" />
+            <label class="form-check-label" for="tagSaude">Saúde</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="tagAlimentacao" value="Alimentação" />
+            <label class="form-check-label" for="tagAlimentacao">Alimentação</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="tagEscolar" value="Escolar" />
+            <label class="form-check-label" for="tagEscolar">Escolar</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="tagBrincadeiras" value="Brincadeiras" />
+            <label class="form-check-label" for="tagBrincadeiras">Brincadeiras</label>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Publicar</button>
+    </form>
+
+    <!-- Feed -->
+    <div id="feed"></div>
+  </div>
+
+  <!-- Modal Confirmar Exclusão -->
+  <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="confirmDeleteLabel">Confirma exclusão?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          Tem certeza que deseja excluir esta postagem?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Excluir</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast para mensagens -->
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div id="actionToast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body" id="toastMsg">Ação realizada com sucesso!</div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Fechar"></button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+
+</body>
+</html>
