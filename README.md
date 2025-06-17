@@ -35,25 +35,25 @@ O Conectar para Cuidar é um protótipo de aplicativo front-end, desenvolvido co
 🖼️ Como ficou
 
 **Página de Login**
-![Screenshot da Página de Login](link-para-sua-imagem-de-login.png)
+![Screenshot da Página de Login](imgs/login.png)
 _A tela inicial de acesso ao aplicativo._
 
 <br>
 
 **Página Inicial (Home)**
-![Screenshot da Página Inicial](link-para-sua-imagem-da-home.png)
+![Screenshot da Página Inicial](imgs/home.png)
 _Exemplo do feed de postagens e atividades._
 
 <br>
 
 **Página "Sobre"**
-![Screenshot da Página Sobre](link-para-sua-imagem-da-pagina-sobre.png)
+![Screenshot da Página Sobre](imgs/about.png)
 _Visão geral da seção que detalha o propósito do aplicativo._
 
 <br>
 
 **Modal de Registro/Atividade**
-![Screenshot de um Modal](link-para-sua-imagem-de-modal.png)
+![Screenshot de um Modal](imgs/register.png)
 _Exemplo de um modal sendo utilizado para interação._
 
 <br>
